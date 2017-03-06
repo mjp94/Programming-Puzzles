@@ -1,0 +1,68 @@
+Given a positive integer n, find if it can be expressed as xy where y > 1 and x > 0 and x and y both are both integers.
+
+Input:
+The first line of input contains an integer T denoting the no of test cases. Then T test cases follow . Each test cases contains an integer N.
+
+Output:
+For each test case in a new line print 1 if the number can be expressed as  xy else print 0.
+
+Constraints:
+1<=T<=1000
+1<=n<=100
+
+Example:
+Input:
+2
+8
+5
+Output:
+1
+0
+
+
+
+
+=>  Using logarithmic logic,
+
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+import java.math.BigDecimal;
+import java.text.NumberFormat;
+
+class GFG {
+	public static void main (String[] args) {
+	    Scanner scanner = new Scanner(System.in);
+        int t = scanner.nextInt();
+        for (int i = 0; i < t; i++) {
+            int n = scanner.nextInt();
+            
+            if (n == 1) {
+                System.out.println(1);
+                continue;
+            }
+            
+            int x = n - 2;
+            boolean res = false;
+            while (x > 1) {
+                double p = Math.log(n);
+                double q = Math.log(x);
+                int r = (int)(p / q);
+                double s = p / q;
+                
+                if (s % r == 0.0) {
+                    res = true;
+                    break;
+                }
+                x -= 2;
+            }
+            
+            if (res) {
+                System.out.println(1);
+            } else {
+                System.out.println(0);    
+            }
+            
+        }
+	}
+}
